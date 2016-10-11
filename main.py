@@ -8,7 +8,7 @@ class myThread (threading.Thread):
 		self.counter = counter
 	def run(self):
 		print "Starting " + self.name
-		initializeValues(3)
+		# what you want the thread to do during its existence
 		print "Ending " + self.name
 
 # This is the first function of the program to run.
