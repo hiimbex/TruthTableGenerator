@@ -7,3 +7,13 @@ def tablize(n, truths=[]):
             tablize(n - 1, truths+[i])
 
 tablize(20)
+
+
+def main():
+    #Main stuff here
+
+def initializeValues():
+    #Initial value generation
+
+def rows():
+    #returns reults for each individual row given initial columns
