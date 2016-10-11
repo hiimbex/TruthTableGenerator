@@ -1,19 +1,16 @@
-#Found online but understand and good example
-def tablize(n, truths=[]):
-    if not n:
-        print truths
-    else:
-        for i in [True, False]:
-            tablize(n - 1, truths+[i])
-
-tablize(20)
-
+import sys, math
 
 def main():
     #Main stuff here
 
-def initializeValues():
+def initializeValues(numberOfVariables):
     #Initial value generation
+    if numberOfVariables < 1:
+        return [[]]
+    subtable = initializeValues(numberOfVariables - 1)
+    return [row + [v] for row in subtable for v in [True, False]]
 
 def rows():
     #returns reults for each individual row given initial columns
+
+print(initializeValues(3))
