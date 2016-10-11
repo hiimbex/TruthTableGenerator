@@ -8,11 +8,13 @@ def tablize(n, truths=[]):
 
 tablize(20)
 
-# This function is the first function of the program to run. 
-# Input: takes in the text of the truth function that the user wants generated.
-# Output: a truth table that contains the truth values of the intial variables and the ultimate expression.
+# This is the first function of the program to run. 
 def main():
-    #Main stuff here
+    # get input of truth expression from user
+    # find the number of variables in the expression
+    # initialize the values
+    # in a loop, calculate the truth variable for each row
+    # print the resulting table
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
