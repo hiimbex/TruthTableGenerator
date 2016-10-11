@@ -11,7 +11,7 @@ def main():
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
-# Output: the columns of initial truth values
+# Output: the array of initial truth values
 def initializeValues(numberOfVariables):
     if numberOfVariables < 1:
         return [[]]
@@ -22,6 +22,7 @@ def initializeValues(numberOfVariables):
 # This function determines the truth value of the ultimate expression based on the inital truth values for that row
 # Input: the array of truth values and the ultimate expression
 # Output: the truth value for a the ultimate expression
+
 def rows(rowArray, ultimateExpression):
     #returns reults for each individual row given initial columns
     #assuming p ^ q
