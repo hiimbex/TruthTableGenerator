@@ -1,4 +1,15 @@
-import sys, math
+import sys, math, threading
+
+class myThread (threading.Thread):
+	def __init__(self, threadID, name, counter):
+		threading.Thread.__init__(self)
+		self.threadID = threadID
+		self.name = name
+		self.counter = counter
+	def run(self):
+		print "Starting " + self.name
+		initializeValues(3)
+		print "Ending " + self.name
 
 # This is the first function of the program to run.
 def main():
@@ -6,8 +17,13 @@ def main():
     # find the number of variables in the expression
     # initialize the values
     # in a loop, calculate the truth variable for each row
+    # 	create a new thread in each loop
+    thread1 = myThread(1, "Thread-1", 1)
+    # 	call start on each thread
+    thread1.start()
     # print the resulting table
-    pass
+    #print(initializeValues(3))
+    print rows(initializeValues(3)[7], 10)
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
@@ -27,7 +43,7 @@ def rows(rowArray, ultimateExpression):
     #returns reults for each individual row given initial columns
     #assuming p ^ q
     print rowArray
-    OR = False
+    OR = True
     AND = False
 
     if AND:
@@ -40,6 +56,5 @@ def rows(rowArray, ultimateExpression):
             if x:
                 return True
         return False
+main()
 
-print(initializeValues(3))
-print rows(initializeValues(3)[7], 10)
