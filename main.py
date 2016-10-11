@@ -7,6 +7,7 @@ def main():
     # initialize the values
     # in a loop, calculate the truth variable for each row
     # print the resulting table
+    print(initializeValues(3))
 
 
 # This function creates the intial combinations of possible truth values for the variables.
@@ -24,5 +25,7 @@ def initializeValues(numberOfVariables):
 # Output: the truth value for a the ultimate expression
 def rows():
     #returns reults for each individual row given initial columns
+    pass
 
-print(initializeValues(3))
+
+main()
