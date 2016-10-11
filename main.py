@@ -7,7 +7,7 @@ def main():
     # initialize the values
     # in a loop, calculate the truth variable for each row
     # print the resulting table
-
+    pass
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
@@ -22,7 +22,23 @@ def initializeValues(numberOfVariables):
 # This function determines the truth value of the ultimate expression based on the inital truth values for that row
 # Input: the array of truth values and the ultimate expression
 # Output: the truth value for a the ultimate expression
-def rows():
+def rows(rowArray, ultimateExpression):
     #returns reults for each individual row given initial columns
+    #assuming p ^ q
+    print rowArray
+    OR = False
+    AND = False
+
+    if AND:
+        for x in rowArray:
+            if not x:
+                return False
+        return True
+    if OR:
+        for x in rowArray:
+            if x:
+                return True
+        return False
 
 print(initializeValues(3))
+print rows(initializeValues(3)[7], 10)
