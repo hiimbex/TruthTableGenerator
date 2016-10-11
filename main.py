@@ -9,6 +9,7 @@ class myThread (threading.Thread):
 	def run(self):
 		print "Starting " + self.name
 		# what you want the thread to do during its existence
+		print rows(initializeValues(3)[7], 10)
 		print "Ending " + self.name
 
 # This is the first function of the program to run.
@@ -23,7 +24,6 @@ def main():
     thread1.start()
     # print the resulting table
     #print(initializeValues(3))
-    print rows(initializeValues(3)[7], 10)
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
@@ -56,5 +56,5 @@ def rows(rowArray, ultimateExpression):
             if x:
                 return True
         return False
-main()
 
+main()
