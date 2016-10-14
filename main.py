@@ -10,8 +10,11 @@ class myThread (threading.Thread):
         self.expr = expr
         self.finArr = finArr
     def run(self):
+        # Get the list of variables and their truth values
         x = self.values.items()
+        # Calculate the result of the expression from the variables
         y = self.expr.subs(self.values)
+        # Lock the array so we can alter it
         lock.acquire()
         try:
             # Append the variable truth values for that row
@@ -20,7 +23,6 @@ class myThread (threading.Thread):
             self.finArr.append(y)
         finally:
             lock.release()
-        # print "Ending " + self.name, self.finArr
 
 # This function creates the final table of truth values with the variables and the final expression for each row
 # Input: the preformatted logic string
@@ -35,13 +37,13 @@ def rows(expr):
     for truth_values in cartes([True, False], repeat=len(variables)):
         # Pair each individual variable with its truth value and add to dictionary
         values = dict(zip(variables, truth_values))
-        #start a unique thread for each row
+        # Start a unique thread for each row
         thread = myThread(threadID, "Thread-"+str(threadID), values, expr, finalArray)
         thread.start()
-        # add each thread to a list so that we can join them later
+        # Add each thread to a list so that we can join them later
         threads.append(thread)
         threadID += 1
-    #join the finished threads together
+    # Join the finished threads together
     for t in threads:
         t.join()
     return finalArray
@@ -51,6 +53,7 @@ userInput = raw_input("Write a truth expression: ")
 lock = threading.Lock()
 expr = sympify(userInput)
 table = rows(expr)
+# Formatting
 for x in range(0,len(table)):
     if x % 2 == 0:
         print table[x], table[x+1]
