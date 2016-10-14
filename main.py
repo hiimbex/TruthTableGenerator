@@ -53,6 +53,8 @@ keepRunning = True
 print "This program returns a Truth Table for a given expression."
 while keepRunning:
     userInput = raw_input("Please enter a valid lowercase truth expression: ").lower()
+    if userInput == "0":
+        keepRunning = False
     try:
         expr = sympify(userInput)
     except:
@@ -64,4 +66,3 @@ while keepRunning:
         for x in range(0,len(table)):
             if x % 2 == 0:
                 print table[x], table[x+1]
-        keepRunning = False
