@@ -13,26 +13,17 @@ class myThread (threading.Thread):
 		self.finArr = finArr
 	def run(self):
 		# print "Starting " + self.name, self.threadID
-		# what you the thread does during its existence
 		x = self.values.items()
 		y = self.expr.subs(self.values)
 		lock.acquire()
 		try:
 			# Append the variable truth values for that row
-			# Append the ultimate result of the expression for that row in the truth table
 			self.finArr.append(x)
+            # Append the ultimate result of the expression for that row in the truth table
 			self.finArr.append(y)
 		finally:
 			lock.release()
 		# print "Ending " + self.name, self.finArr
-
-# This is the first function of the program to run.
-# Input: the user's logic expression in the form of a string
-# Output: the 2D table of truth values
-def main(expr_string):
-    expr = sympify(expr_string)
-    table = rows(expr)
-    return table
 
 # This function creates the final table of truth values with the variables and the final expression for each row
 # Input: the preformatted logic string
@@ -50,14 +41,16 @@ def rows(expr):
 		#start a unique thread for each row
         thread = myThread(threadID, "Thread-"+str(threadID), values, expr, finalArray)
         thread.start()
+        # add each thread to a list so that we can join them later
         threads.append(thread)
         threadID += 1
-
+    #join the finished threads together
     for t in threads:
-        # print("joining thread")
         t.join()
     return finalArray
 
+# Main part of the program
 userInput = raw_input("Write a truth expression: ")
-
-print(main(userInput))
+expr = sympify(userInput)
+table = rows(expr)
+print(table)
