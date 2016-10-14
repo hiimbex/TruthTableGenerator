@@ -1,6 +1,5 @@
-import sys, math, threading
+import sys, math, threading, pprint
 from sympy import *
-from sympy.abc import p, q, r
 
 class myThread (threading.Thread):
 	def __init__(self, threadID, name, counter):
@@ -31,9 +30,12 @@ def rows():
     expr_string = raw_input("Enter an expression: ")
     expr = sympify(expr_string)
     variables = expr.free_symbols
+    finalArray = []
     for truth_values in cartes([False, True], repeat=len(variables)):
         values = dict(zip(variables, truth_values))
-        print values.items(), expr.subs(values)
+        finalArray.append(expr.subs(values))
+        finalArray.append(values.items())
+    print finalArray[::-1]
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
