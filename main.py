@@ -49,11 +49,19 @@ def rows(expr):
     return finalArray
 
 # Main part of the program
-userInput = raw_input("Write a truth expression: ")
-lock = threading.Lock()
-expr = sympify(userInput)
-table = rows(expr)
-# Formatting
-for x in range(0,len(table)):
-    if x % 2 == 0:
-        print table[x], table[x+1]
+keepRunning = True
+print "This program returns a Truth Table for a given expression."
+while keepRunning:
+    userInput = raw_input("Please enter a valid truth expression: ")
+    try:
+        expr = sympify(userInput)
+    except:
+        SyntaxError
+    else:
+        lock = threading.Lock()
+        table = rows(expr)
+        # Formatting
+        for x in range(0,len(table)):
+            if x % 2 == 0:
+                print table[x], table[x+1]
+        keepRunning = False
