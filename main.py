@@ -49,21 +49,20 @@ def rows(expr):
     return finalArray
 
 # Main part of the program
-keepRunning = True
 print "This program returns a Truth Table for a given expression."
-while keepRunning:
+while True:
     userInput = raw_input("Enter 0 to quit. Otherwise enter a valid lowercase truth expression: ").lower()
+
+    if userInput == "0":
+        break
     try:
         expr = sympify(userInput)
     except:
         SyntaxError
     else:
-        if userInput == "0":
-            keepRunning = False
-        else:
-            lock = threading.Lock()
-            table = rows(expr)
-            # Formatting
-            for x in range(0,len(table)):
-                if x % 2 == 0:
-                    print table[x], table[x+1]
+        lock = threading.Lock()
+        table = rows(expr)
+        # Formatting
+        for x in range(0,len(table)):
+            if x % 2 == 0:
+                print table[x], table[x+1]
