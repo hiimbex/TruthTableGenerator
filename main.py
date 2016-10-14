@@ -1,4 +1,4 @@
-import sys, math, threading, pprint
+import sys, math, threading, pprint, string
 from sympy import *
 
 class myThread (threading.Thread):
@@ -52,7 +52,7 @@ def rows(expr):
 keepRunning = True
 print "This program returns a Truth Table for a given expression."
 while keepRunning:
-    userInput = raw_input("Please enter a valid truth expression: ")
+    userInput = raw_input("Please enter a valid lowercase truth expression: ").lower()
     try:
         expr = sympify(userInput)
     except:
