@@ -10,7 +10,6 @@ class myThread (threading.Thread):
 		self.expr = expr
 		self.finArr = finArr
 	def run(self):
-		lock = threading.Lock()
 		x = self.values.items()
 		y = self.expr.subs(self.values)
 		lock.acquire()
@@ -49,6 +48,7 @@ def rows(expr):
 
 # Main part of the program
 userInput = raw_input("Write a truth expression: ")
+lock = threading.Lock()
 expr = sympify(userInput)
 table = rows(expr)
 print(table)
