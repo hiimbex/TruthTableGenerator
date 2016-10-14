@@ -60,4 +60,4 @@ def rows(expr):
 
 userInput = raw_input("Write a truth expression: ")
 
-print(main(userInput))
+print(main(str(userInput)))
