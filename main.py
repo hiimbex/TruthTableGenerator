@@ -52,17 +52,18 @@ def rows(expr):
 keepRunning = True
 print "This program returns a Truth Table for a given expression."
 while keepRunning:
-    userInput = raw_input("Please enter a valid lowercase truth expression: ").lower()
-    if userInput == "0":
-        keepRunning = False
+    userInput = raw_input("Enter 0 to quit. Otherwise enter a valid lowercase truth expression: ").lower()
     try:
         expr = sympify(userInput)
     except:
         SyntaxError
     else:
-        lock = threading.Lock()
-        table = rows(expr)
-        # Formatting
-        for x in range(0,len(table)):
-            if x % 2 == 0:
-                print table[x], table[x+1]
+        if userInput == "0":
+            keepRunning = False
+        else:
+            lock = threading.Lock()
+            table = rows(expr)
+            # Formatting
+            for x in range(0,len(table)):
+                if x % 2 == 0:
+                    print table[x], table[x+1]
