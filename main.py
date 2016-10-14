@@ -51,4 +51,6 @@ userInput = raw_input("Write a truth expression: ")
 lock = threading.Lock()
 expr = sympify(userInput)
 table = rows(expr)
-print(table)
+for x in range(0,len(table)):
+    if x % 2 == 0:
+        print table[x], table[x+1]
