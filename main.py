@@ -58,7 +58,6 @@ def rows(expr):
         t.join()
     return finalArray
 
-# userInput = raw_input("Write a truth expression: ")
-userInput = "(a & b) | (c & ~d)"
+userInput = raw_input("Write a truth expression: ")
 
 print(main(userInput))
