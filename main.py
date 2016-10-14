@@ -12,7 +12,7 @@ class myThread (threading.Thread):
 		self.finArr = finArr
 	def run(self):
 		lock = threading.Lock()
-		#print "Starting " + self.name, self.counter
+		print "Starting " + self.name, self.counter
 		# what you the thread does during its existence
 		x = self.values.items()
 		y = self.expr.subs(self.values)
@@ -24,7 +24,7 @@ class myThread (threading.Thread):
 			self.finArr.append(y)
 		finally:
 			lock.release()
-		#print "Ending " + self.name, self.finArr
+		print "Ending " + self.name, self.finArr
 
 # This is the first function of the program to run.
 # Input: the user's logic expression in the form of a string
@@ -49,6 +49,7 @@ def rows(expr):
 		#start a unique thread for each row
         thread = myThread(1, "Thread-"+str(counter), counter, values, expr, finalArray)
         thread.start()
+        thread.join()
         counter += 1
     return finalArray
 
