@@ -14,20 +14,25 @@ class myThread (threading.Thread):
 		print "Ending " + self.name
 
 # This is the first function of the program to run.
-def main():
-    # get input of truth expression from user
+# Input: the user's logic expression in the form of a string
+# Output: the 2D table of truth values
+def main(logicExpression):
     # find the number of variables in the expression
+    table = [[]]
     # initialize the values
     # in a loop, calculate the truth variable for each row
     # 	create a new thread in each loop
-    thread1 = myThread(1, "Thread-1", 1)
+    # thread1 = myThread(1, "Thread-1", 1)
     # 	call start on each thread
-    thread1.start()
+    # thread1.start()
     # print the resulting table
     #print(initializeValues(3))
+    rows(logicExpression)
+    # gather all of the threads back together
+    
+    return table
 
-def rows():
-    expr_string = raw_input("Enter an expression: ")
+def rows(expr_string):
     expr = sympify(expr_string)
     variables = expr.free_symbols
     finalArray = []
@@ -72,4 +77,6 @@ def rows():
     #             return True
     #     return False
 
-main()
+
+userInput = "A & B"
+print(main(userInput))
