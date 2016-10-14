@@ -49,12 +49,11 @@ def rows(expr):
     return finalArray
 
 # Main part of the program
-keepRunning = True
 print "This program returns a Truth Table for a given expression."
-while keepRunning:
+while True:
     userInput = raw_input("Please enter a valid lowercase truth expression: ").lower()
     if userInput == "0":
-        keepRunning = False
+        break
     try:
         expr = sympify(userInput)
     except:
