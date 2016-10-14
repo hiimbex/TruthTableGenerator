@@ -2,7 +2,7 @@ import sys, math, threading, pprint
 from sympy import *
 
 class myThread (threading.Thread):
-	def __init__(self, threadID, name, counter):
+	def __init__(self, threadID, name, finalArray):
 		threading.Thread.__init__(self)
 		self.threadID = threadID
 		self.name = name
@@ -10,37 +10,31 @@ class myThread (threading.Thread):
 	def run(self):
 		print "Starting " + self.name
 		# what you want the thread to do during its existence
-		rows()
 		print "Ending " + self.name
 
 # This is the first function of the program to run.
 # Input: the user's logic expression in the form of a string
 # Output: the 2D table of truth values
-def main(logicExpression):
-    # find the number of variables in the expression
-    table = [[]]
-    # initialize the values
-    # in a loop, calculate the truth variable for each row
-    # 	create a new thread in each loop
-    # thread1 = myThread(1, "Thread-1", 1)
-    # 	call start on each thread
-    # thread1.start()
-    # print the resulting table
-    #print(initializeValues(3))
-    rows(logicExpression)
-    # gather all of the threads back together
-    
+def main(expr_string):
+    expr = sympify(expr_string)
+    table = rows(expr)
     return table
 
-def rows(expr_string):
-    expr = sympify(expr_string)
-    variables = expr.free_symbols
+def rows(expr):
     finalArray = []
+    # Get the variables out of the expression
+    variables = expr.free_symbols
+    # Go through the initial generation of the truth values
     for truth_values in cartes([False, True], repeat=len(variables)):
+        # Pair each individual variable with its truth value and add to dictionary
         values = dict(zip(variables, truth_values))
+        # thread1 = myThread(1, "Thread-1", finalArray)
+        # thread1.start()
+        # Append the ultimate result of the expression for that row in the truth table
         finalArray.append(expr.subs(values))
+        # Append the variable truth values for that row
         finalArray.append(values.items())
-    print finalArray[::-1]
+    return finalArray[::-1]
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
@@ -77,6 +71,6 @@ def rows(expr_string):
     #             return True
     #     return False
 
-
-userInput = "A & B"
+userInput = raw_input("Write a truth expression: ")
+# userInput = "(A | B) & C & ~B"
 print(main(userInput))
