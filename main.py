@@ -2,25 +2,25 @@ import sys, math, threading, pprint
 from sympy import *
 
 class myThread (threading.Thread):
-	def __init__(self, threadID, name, values, expr, finArr):
-		threading.Thread.__init__(self)
-		self.threadID = threadID
-		self.name = name
-		self.values = values
-		self.expr = expr
-		self.finArr = finArr
-	def run(self):
-		x = self.values.items()
-		y = self.expr.subs(self.values)
-		lock.acquire()
-		try:
-			# Append the variable truth values for that row
-			self.finArr.append(x)
+    def __init__(self, threadID, name, values, expr, finArr):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.values = values
+        self.expr = expr
+        self.finArr = finArr
+    def run(self):
+        x = self.values.items()
+        y = self.expr.subs(self.values)
+        lock.acquire()
+        try:
+            # Append the variable truth values for that row
+            self.finArr.append(x)
             # Append the ultimate result of the expression for that row in the truth table
-			self.finArr.append(y)
-		finally:
-			lock.release()
-		# print "Ending " + self.name, self.finArr
+            self.finArr.append(y)
+        finally:
+            lock.release()
+        # print "Ending " + self.name, self.finArr
 
 # This function creates the final table of truth values with the variables and the final expression for each row
 # Input: the preformatted logic string
@@ -35,7 +35,7 @@ def rows(expr):
     for truth_values in cartes([True, False], repeat=len(variables)):
         # Pair each individual variable with its truth value and add to dictionary
         values = dict(zip(variables, truth_values))
-		#start a unique thread for each row
+        #start a unique thread for each row
         thread = myThread(threadID, "Thread-"+str(threadID), values, expr, finalArray)
         thread.start()
         # add each thread to a list so that we can join them later
