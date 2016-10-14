@@ -1,8 +1,6 @@
 import sys, math, threading, pprint
 from sympy import *
 
-lock = threading.Lock()
-
 class myThread (threading.Thread):
 	def __init__(self, threadID, name, values, expr, finArr):
 		threading.Thread.__init__(self)
@@ -12,7 +10,7 @@ class myThread (threading.Thread):
 		self.expr = expr
 		self.finArr = finArr
 	def run(self):
-		# print "Starting " + self.name, self.threadID
+		lock = threading.Lock()
 		x = self.values.items()
 		y = self.expr.subs(self.values)
 		lock.acquire()
