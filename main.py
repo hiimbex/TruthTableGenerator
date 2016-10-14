@@ -25,16 +25,16 @@ def rows(expr):
     # Get the variables out of the expression
     variables = expr.free_symbols
     # Go through the initial generation of the truth values
-    for truth_values in cartes([False, True], repeat=len(variables)):
+    for truth_values in cartes([True, False], repeat=len(variables)):
         # Pair each individual variable with its truth value and add to dictionary
         values = dict(zip(variables, truth_values))
         # thread1 = myThread(1, "Thread-1", finalArray)
         # thread1.start()
-        # Append the ultimate result of the expression for that row in the truth table
-        finalArray.append(expr.subs(values))
         # Append the variable truth values for that row
         finalArray.append(values.items())
-    return finalArray[::-1]
+        # Append the ultimate result of the expression for that row in the truth table
+        finalArray.append(expr.subs(values))
+    return finalArray
 
 # This function creates the intial combinations of possible truth values for the variables.
 # Input: the set of variables that are used in the final equation
