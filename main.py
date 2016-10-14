@@ -13,11 +13,13 @@ class myThread (threading.Thread):
 	def run(self):
 		lock = threading.Lock()
 		#print "Starting " + self.name, self.counter
-		# what you want the thread to do during its existence
+		# what you the thread does during its existence
 		x = self.values.items()
 		y = self.expr.subs(self.values)
 		lock.acquire()
 		try:
+			# Append the variable truth values for that row
+			# Append the ultimate result of the expression for that row in the truth table
 			self.finArr.append(x)
 			self.finArr.append(y)
 		finally:
@@ -44,15 +46,11 @@ def rows(expr):
     for truth_values in cartes([True, False], repeat=len(variables)):
         # Pair each individual variable with its truth value and add to dictionary
         values = dict(zip(variables, truth_values))
+		#start a unique thread for each row
         thread = myThread(1, "Thread-"+str(counter), counter, values, expr, finalArray)
         thread.start()
-        # Append the variable truth values for that row
-        #finalArray.append(values.items())
-        # Append the ultimate result of the expression for that row in the truth table
-        #finalArray.append(expr.subs(values))
         counter += 1
     return finalArray
-
 
 # userInput = raw_input("Write a truth expression: ")
 userInput = "a & b"
