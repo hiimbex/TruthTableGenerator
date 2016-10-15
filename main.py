@@ -34,18 +34,19 @@ def rows(expr):
     # Get the variables out of the expression
     variables = expr.free_symbols
     # Go through the initial generation of the truth values
-    for truth_values in cartes([True, False], repeat=len(variables)):
+    for truthRow in cartes([True, False], repeat=len(variables)):
         # Pair each individual variable with its truth value and add to dictionary
-        values = dict(zip(variables, truth_values))
+        values = dict(zip(variables, truthRow))
         # Start a unique thread for each row
         thread = myThread(threadID, "Thread-"+str(threadID), values, expr, finalArray)
         thread.start()
         # Add each thread to a list so that we can join them later
-        threads.append(thread)
+        #threads.append(thread)
+        thread.join()
         threadID += 1
     # Join the finished threads together
-    for t in threads:
-        t.join()
+    #for t in threads:
+        #t.join()
     return finalArray
 
 # Main part of the program
