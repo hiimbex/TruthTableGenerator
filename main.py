@@ -1,4 +1,4 @@
-import sys, math, threading, pprint, string
+import sys, math, threading, pprint
 from sympy import *
 
 class myThread (threading.Thread):
@@ -40,26 +40,27 @@ def rows(expr):
         # Start a unique thread for each row
         thread = myThread(threadID, "Thread-"+str(threadID), values, expr, finalArray)
         thread.start()
-        # Add each thread to a list so that we can join them later
-        #threads.append(thread)
+        # Join the threads together when they finish.
         thread.join()
         threadID += 1
-    # Join the finished threads together
-    #for t in threads:
-        #t.join()
     return finalArray
 
-# Main part of the program
+# Main part of the program.
 print "This program returns a Truth Table for a given expression."
+print "(and = &, not = ~, or = |, implies = >>)"
 while True:
+    print ""
     userInput = raw_input("Enter 0 to quit. Otherwise enter a valid lowercase truth expression: ").lower()
 
     if userInput == "0":
         break
     try:
+        # Break the input into an expression the computer can understand.
         expr = sympify(userInput)
     except:
         SyntaxError
+        print "Please enter a valid expression."
+        print "(and = &, not = ~, or = |, implies = >>)"
     else:
         lock = threading.Lock()
         table = rows(expr)
