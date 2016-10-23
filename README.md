@@ -10,6 +10,8 @@ Requirements:
 Python 3.0
 SymPy library
 
+Intro: why project, example of truth table
+
 Method:
 A user enters a string of variables and operators that are interpreted as a logic expression. This input is parsed with the Python library <a href="http://www.sympy.org/en/index.html">SymPy</a>, which is used for symbolic mathematics, to turn the expression into a format that can be worked with. 
 This expression is passed to the function **rows()**, which creates threads to calculate the ultimate truth value for each unique combination of variable truth values. Each thread takes the unique variable truth values and the logic expression given by the user and calculates the resulting truth value for the statement. Both the variables with truth values and the ultimate truth value are then placed into an array containing all of the combinations of varaible truth values.
