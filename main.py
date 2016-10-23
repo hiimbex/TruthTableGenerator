@@ -1,5 +1,8 @@
 """This module creates a logic table from a user-given logic expression."""
 import threading
+
+import cgi
+import cgitb; cgitb.enable()
 from sympy import sympify, cartes
 
 class MyThread(threading.Thread):
@@ -57,6 +60,21 @@ def rows(expression):
         thread_id += 1
     return final_array
 
+form = cgi.FieldStorage()
+html = """
+<html>
+<head>
+</head>
+<body>
+<form action="index.py" name="myform" method="GET">
+        Enter length:  <input type="text" name="length"><br />
+        Enter width: <input type="text" name="width"><br />
+        <input type="submit" value="submit">
+</form>
+</body>
+</html>
+"""
+
 print "This program returns a Truth Table for a given expression."
 print "(and = &, not = ~, or = |, implies = >>)"
 while True:
@@ -79,3 +97,4 @@ while True:
         for x in range(0, len(TABLE)):
             if x % 2 == 0:
                 print TABLE[x], TABLE[x+1]
+
