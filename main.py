@@ -67,7 +67,7 @@ while True:
     if USER_INPUT == "0":
         break
     try:
-        # Break the input into an expression the computer can understand.
+        # Convert the input into SymPy internal format.
         EXPR = sympify(USER_INPUT)
     except:
         print "NOT A VALID EXPRESSION."
