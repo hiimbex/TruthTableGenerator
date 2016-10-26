@@ -1,6 +1,6 @@
 # Truth Table Generator: AI Project 1
 
-This project uses threading in Python to generate truth tables of various logic expressions. 
+This project uses threading in Python to generate truth tables of user-driven logic expressions. 
 
 ## Introduction
 Truth tables are a standard piece of computer science curriculum. While tables with only two or three variables are easy to calculate, tables with more variables than this require exponential time to construct and calculate. To give students a way to check their truth table values, we developed a python script that runs through all of the unique truth combinations for the variables and calculates the truth value of the expression based on those variabls.
@@ -32,4 +32,4 @@ This program will be tested on Zorro, a high-performance computing machine that 
 - Implementor: Bex Warner
 
 ## License
-TODO: Write license
+Released under the MIT License.
