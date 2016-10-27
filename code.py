@@ -4,8 +4,10 @@ from sympy import sympify, cartes
 import web
 from web import form
 
+# Tell webpy where the templates are.
 render = web.template.render('templates/')
 
+# The URLs for this website.
 urls = (
 	'/', 'index',
 	'/table', 'table'
@@ -13,6 +15,7 @@ urls = (
 app = web.application(urls, globals())
 
 LOCK = threading.Lock()
+TABLE = [[]]
 
 myform = form.Form( 
     form.Textbox("expression", 
@@ -93,12 +96,15 @@ class index:
 			except:
 				return "NOT A VALID EXPRESSION.\nAccepted symbols: (and = &, not = ~, or = |, implies = >>)"
 			else:
+				global TABLE
 				TABLE = rows(EXPR)
 				# Formatting
-				for x in range(0, len(TABLE)):
-				    if x % 2 == 0:
-				        print TABLE[x], TABLE[x+1]
-				return TABLE
+				raise web.seeother('/table')
+
+class table:
+    def GET(self):
+        return render.truthtable(TABLE)
+
 
 if __name__=="__main__":
     web.internalerror = web.debugerror
