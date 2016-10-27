@@ -1,0 +1,30 @@
+$def with (table)
+<!doctype html>
+<html>
+<head>
+	<title>Truth Table Website</title>
+</head>
+<body>
+	<table border=1>
+		<!-- Headers for the columns. -->
+		<tr>
+			<th colspan=$len(table[0])-1>Variable Truths</th>
+			<th rowspan=2>Expression Truth</th>
+		</tr>
+		<!-- Variable names. -->
+		<tr>
+			<!-- Just use the first row, since all of the variables are in the same pattern for each row. -->
+			$for y in range(0, len(table[0])):
+				<th>$table[0][y][0]</th>
+		</tr>
+		<!-- Filling in the table. -->
+		$for x in range(0, len(table)):
+			$if x % 2 == 0:
+				<tr>
+					$for y in range(0, len(table[x])):
+						<td>$table[x][y][1]</td>
+					<td>$table[x+1]</td>
+				</tr>
+	</table>
+</body>
+</html>
