@@ -1,4 +1,5 @@
-"""This module creates a logic table from a user-given logic expression."""
+"""This module runs in the browser and creates a logic table from
+a user-given logic expression."""
 import threading
 from sympy import sympify, cartes
 import web
