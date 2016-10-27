@@ -5,24 +5,20 @@ import web
 from web import form
 
 # Tell webpy where the templates are.
-render = web.template.render('templates/')
+RENDER = web.template.render('templates/')
 
 # The URLs for this website.
-urls = (
-	'/', 'index',
-	'/table', 'table'
-)
-app = web.application(urls, globals())
+URLS = ('/', 'Index', '/table', 'Table')
+APP = web.application(URLS, globals())
 
+# Lock for threading.
 LOCK = threading.Lock()
+
+# Global table variable to pass to the truth table page.
 TABLE = [[]]
 
-myform = form.Form( 
-    form.Textbox("expression", 
-        form.notnull,
-        class_="textEntry"
-        )
-    )
+# The form for submitting a truth expression.
+MY_FORM = form.Form(form.Textbox("expression", form.notnull, class_="textEntry"))
 
 class MyThread(threading.Thread):
 
@@ -79,33 +75,45 @@ def rows(expression):
         thread_id += 1
     return final_array
 
+class Index(object):
 
-class index: 
-    def GET(self): 
-        form = myform()
-        return render.formtest(form)
+    """Creates website initial page.
 
-    def POST(self): 
-        form = myform() 
-        if not form.validates(): 
-            return render.formtest(form)
-        else:
-			try:
-				# Convert the input into SymPy internal format.
-				EXPR = sympify(form['expression'].value.lower())
-			except:
-				return "NOT A VALID EXPRESSION.\nAccepted symbols: (and = &, not = ~, or = |, implies = >>)"
-			else:
-				global TABLE
-				TABLE = rows(EXPR)
-				# Formatting
-				raise web.seeother('/table')
+    This class holds the methods for creating the intial website page via webpy. Its two
+    functions, GET and POST, are used for HTTP requests.
+    """
 
-class table:
     def GET(self):
-        return render.truthtable(TABLE)
+        """This function runs when the HTTP GET request for the index.html page is called."""
+        return RENDER.formtest(MY_FORM)
 
+    def POST(self):
+        """This function runs when the HTTP POST request for the index.html page is called."""
+        my_form = MY_FORM()
+        if not my_form.validates():
+            return RENDER.formtest(my_form)
+        else:
+            try:
+                # Convert the input into SymPy internal format.
+                expr = sympify(my_form['expression'].value.lower())
+            except:
+                return """NOT A VALID EXPRESSION.\n
+                Accepted symbols: (and = &, not = ~, or = |, implies = >>)"""
+            else:
+                global TABLE
+                TABLE = rows(expr)
+                # Formatting
+                raise web.seeother('/table')
 
-if __name__=="__main__":
+class Table(object):
+
+    """Creates webpage with truth table displayed."""
+
+    def GET(self):
+        """This function renders the truth table page when the HTTP GET request
+        for truthtable.html is called."""
+        return RENDER.truthtable(TABLE)
+
+if __name__ == "__main__":
     web.internalerror = web.debugerror
-    app.run()
+    APP.run()
