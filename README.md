@@ -4,6 +4,11 @@ This project uses threading in Python to generate truth tables of user-driven lo
 
 ## Introduction
 Truth tables are a standard piece of computer science curriculum. While tables with only two or three variables are easy to calculate, tables with more variables than this require exponential time to construct and calculate. To give students a way to check their truth table values, we developed a python script that runs through all of the unique truth combinations for the variables and calculates the truth value of the expression based on those variables.
+| Tables        | Are           | Cool  |
+| ------------- |-------------| -----|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 ## Installation
 To run this program, first clone this repository. You'll also need to go to <a href="http://www.sympy.org/en/index.html">SymPy.org</a> to download their library, which is used for symbolic mathematics.
