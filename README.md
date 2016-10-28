@@ -17,11 +17,11 @@ The table below is an example truth table of the expression **a & b**. The first
 ## Installation
 To run this program, first clone this repository. 
 
-You'll also need to go to <a href="http://www.sympy.org/en/index.html">SymPy.org</a> to download their library, which is used for symbolic mathematics.
+<a href="http://www.sympy.org/en/index.html">SymPy.org</a> is needed for this project, through Anaconda or <a href="http://conda.pydata.org/docs/install/quick.html">Miniconda</a>. Installing <a href="http://conda.pydata.org/docs/install/quick.html">Miniconda</a> will make installing SymPy much easier; simply click on the link to download the package manager and follow the installation tutorial.
+(<a href="http://conda.pydata.org/docs/install/quick.html">Miniconda</a> is preferred, since it is a smaller package.) 
+Once you have Anaconda or <a href="http://conda.pydata.org/docs/install/quick.html">Miniconda</a>, you can check if you have SymPy by running the command `from sympy import *`. If there is an error or you do not have Sympy, install SymPy using the command `conda install sympy`.
 
-Finally, install WebPy if you want to run the program in the browser. This is necessary to run `code.py`.
-
-`pip install web.py`
+Finally, install WebPy if you want to run the program in the browser by issuing the command `pip install web.py`. This is necessary to run `code.py`.
 
 ## Usage
 A user enters a string of variables and operators that are interpreted as a logic expression. This input is parsed with the Python library <a href="http://www.sympy.org/en/index.html">SymPy</a> to turn the expression into a format that can be worked with. 
