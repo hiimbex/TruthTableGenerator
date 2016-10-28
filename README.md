@@ -21,7 +21,7 @@ To run this program, first clone this repository.
 (<a href="http://conda.pydata.org/docs/install/quick.html">Miniconda</a> is preferred, since it is a smaller package.) 
 Once you have Anaconda or <a href="http://conda.pydata.org/docs/install/quick.html">Miniconda</a>, you can check if you have SymPy by running the command `from sympy import *`. If there is an error or you do not have Sympy, install SymPy using the command `conda install sympy`.
 
-Finally, install WebPy if you want to run the program in the browser by issuing the command `pip install web.py`. This is necessary to run `code.py`.
+Finally, install WebPy if you want to run the program in the browser by issuing the command `pip install web.py`. This is necessary to run `code.py`. However, if you just wish to run the code through a command line or IDE interface, simply run `main.py`.
 
 ## Usage
 A user enters a string of variables and operators that are interpreted as a logic expression. This input is parsed with the Python library <a href="http://www.sympy.org/en/index.html">SymPy</a> to turn the expression into a format that can be worked with. 
