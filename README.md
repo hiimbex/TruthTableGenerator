@@ -3,7 +3,7 @@
 This project uses threading in Python to generate truth tables of user-driven logic expressions. 
 
 ## Introduction
-
+This project has two main files: main.py, which runs solely in the command line, and code.py, which uses a webpy server to display information in the browser. Images of these two programs can be found in the Wiki.
 
 The table below is an example truth table of the expression **a & b**. The first two columns are the unique combination of all possible truth values of the variables used in the expression. The final column is the result of the truth values of that row placed into the expression.
 
@@ -19,7 +19,7 @@ To run this program, first clone this repository.
 
 You'll also need to go to <a href="http://www.sympy.org/en/index.html">SymPy.org</a> to download their library, which is used for symbolic mathematics.
 
-Finally, install WebPy.
+Finally, install WebPy if you want to run the program in the browser. This is necessary to run `code.py`.
 
 `pip install web.py`
 
@@ -41,7 +41,7 @@ Finally, when all of the threads have added their row to the table, the table is
 ## History
 This method has been tested up to 20 unique variables, or +1 million combinations of truth values, to produce the correct resulting table.
 
-This program will be tested on Zorro, a high-performance computing machine that resides in Reston, VA. 
+This program has also been tested on Zorro, a high-performance computing machine that resides in Reston, VA. 
 
 ## Credits
 - Coordinator: Yan Shi
